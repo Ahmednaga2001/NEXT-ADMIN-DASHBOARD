@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import "../globals.css";
-import NavBar from "@/components/NavBar";
-import SideBar from "@/components/SideBar";
+import NavBar from "@/components/dashboard/NavBar";
+import SideBar from "@/components/dashboard/SideBar";
 
 
 
@@ -19,7 +19,7 @@ export default function DashBoardLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex gap-5">
+      <body className="flex gap-5 bg-dark">
         <div className="lg:w-1/4 md:w1/3 w-1/2">
         <SideBar/>
         </div>

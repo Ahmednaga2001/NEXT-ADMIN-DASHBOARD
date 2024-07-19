@@ -1,14 +1,14 @@
 "use client"
 import Image from "next/image";
-import avatar from ""
-import { BsDash } from "react-icons/bs";
-import { FaProductHunt } from "react-icons/fa";
-import { TbTransactionRupee } from "react-icons/tb";
+import {BsDashCircleDotted } from "react-icons/bs";
+import {FaProductHunt } from "react-icons/fa";
+import {TbReportAnalytics, TbTransactionRupee } from "react-icons/tb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FcSettings } from "react-icons/fc";
-import { IoHelpBuoy } from "react-icons/io5";
-import { BiLogOut } from "react-icons/bi";
+import { IoBagRemoveOutline, IoHelpBuoy } from "react-icons/io5";
+import { BiLogOut, BiUserCircle } from "react-icons/bi";
+import { PiMicrosoftTeamsLogo } from "react-icons/pi";
 const menuItem = [
     {
         title: "Page",
@@ -17,7 +17,7 @@ const menuItem = [
     {
         title: "Dashboard",
         href: "/dashboard",
-        icon: <BsDash size={20} />
+        icon: <BsDashCircleDotted size={20} />
     },
     {
         title: "Products",
@@ -27,7 +27,7 @@ const menuItem = [
     {
         title: "Users",
         href: "/dashboard/users",
-        icon: <BsDash size={20} />
+        icon: <BiUserCircle size={20} />
     },
     {
         title: "Transactions",
@@ -41,17 +41,17 @@ const menuItem = [
     {
         title: "Revenue",
         href: "#",
-        icon: <BsDash size={18} />
+        icon: <IoBagRemoveOutline size={18} />
     },
     {
         title: "Reports",
         href: "#",
-        icon: <FaProductHunt size={18} />
+        icon: <TbReportAnalytics size={18} />
     },
     {
         title: "Teams",
         href: "#",
-        icon: <BsDash size={18} />
+        icon: <PiMicrosoftTeamsLogo size={18} />
     },
 
     {
@@ -91,7 +91,7 @@ export default function SideBar() {
                     <ul>
                         {
                             menuItem.map((item) => (
-                                item.section === true ? <li className="pt-4" key={item.title}>{item.title}</li> : <li className={`flex items-center  gap-2 mt-2 pl-4 text-sm  ${item.title.toLowerCase() === pathname ? 'bg-secondry rounded-md p-2' : ""}`} key={item.title}>{item.icon}<Link href={item.href}>{item.title}</Link></li>
+                                item.section === true ? <li className="pt-4" key={item.title}>{item.title}</li> : <li className={`flex items-center  gap-2 mt-2 pl-4 text-lg p-2  ${item.title.toLowerCase() === pathname ? 'bg-secondry rounded-md' : ""}`} key={item.title}>{item.icon}<Link href={item.href}>{item.title}</Link></li>
 
                             ))
                         }

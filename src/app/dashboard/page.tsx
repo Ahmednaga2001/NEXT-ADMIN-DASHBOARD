@@ -1,6 +1,6 @@
-import Card from "@/components/Card";
-import Chart from "@/components/Chart";
-import Transaction from "@/components/Transaction";
+import Card from "@/components/dashboard/Card";
+import Chart from "@/components/dashboard/Chart";
+import Transaction from "@/components/dashboard/Transaction";
 
 export default function page() {
   return (
