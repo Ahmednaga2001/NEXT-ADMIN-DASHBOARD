@@ -1,8 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import Search from "@/components/dashboard/Search"
+import { fetchUsers } from "@/lib/actions"
 
-export default function User() {
+export default async function User() {
+    const users = await fetchUsers()
+    console.log(users);
+    
     return (
         <section className="m-2 bg-primary text-white p-5 font-JanatLT">
             <div className="flex justify-between items-center">
@@ -22,38 +26,23 @@ export default function User() {
                             <th>Actions</th>
                         </thead>
                         <tbody>
-                            <tr className="">
-                                <td className="text-sm flex justify-center gap-2 p-3">
-                                    <Image src="" width={20} height={20} alt="photo" className="w-[20px] h-[20px] rounded-full" />
-                                    Ahmed Naga
-                                </td>
-                                <td className="p-3 text-sm">Ahmed@gmail.com</td>
-                                <td className="p-3 text-sm">10/20/2022</td>
-                                <td className="p-3 text-sm">Admin</td>
-                                <td className="p-3 text-sm">active</td>
-                                <td className="p-3 text-sm">
-                                    <Link href="/dashboard/users/id" className="bg-red-500 px-2 py-1 rounded-md">View</Link>
-                                    <Link href="" className="bg-blue-600 px-2 py-1 rounded-md ml-2">Delete</Link>
-                                </td>
-                            </tr>
-                            <tr className="">
-                                <td className="text-sm flex justify-center gap-2 p-3">
-                                    <Image src="" width={20} height={20} alt="photo" className="w-[20px] h-[20px] rounded-full" />
-                                    Ahmed Naga
-                                </td>
-                                <td className="p-3 text-sm">pending</td>
-                                <td className="p-3 text-sm">10/20/2022</td>
-                                <td className="p-3 text-sm">$20</td>
-                            </tr>
-                            <tr className="">
-                                <td className="text-sm flex justify-center gap-2 p-3">
-                                    <Image src="" width={20} height={20} alt="photo" className="w-[20px] h-[20px] rounded-full" />
-                                    Ahmed Naga
-                                </td>
-                                <td className="p-3 text-sm">pending</td>
-                                <td className="p-3 text-sm">10/20/2022</td>
-                                <td className="p-3 text-sm">$20</td>
-                            </tr>
+                           {users?.map((user)=>(
+                             <tr className="" key={user.email}>
+                             <td className="text-sm flex justify-center gap-2 p-3">
+                                 <Image src="" width={20} height={20} alt="photo" className="w-[20px] h-[20px] rounded-full" />
+                                 {user?.username}
+                             </td>
+                             <td className="p-3 text-sm">{user?.email}</td>
+                             <td className="p-3 text-sm">{user?.createdAt?.toLocaleDateString()}</td>
+                             <td className="p-3 text-sm">{user?.isAdmin===true?"Admin":"Client"}</td>
+                             <td className="p-3 text-sm">{user?.isActive===true?"active":"passive"}</td>
+                             <td className="p-3 text-sm">
+                                 <Link href="/dashboard/users/id" className="bg-red-500 px-2 py-1 rounded-md">View</Link>
+                                 <Link href="" className="bg-blue-600 px-2 py-1 rounded-md ml-2">Delete</Link>
+                             </td>
+                         </tr>
+                           ))}
+                     
                         </tbody>
                     </table>
             </div>
